@@ -17,3 +17,83 @@ a.small.active {
   background-color: white;
   color: hsl(74, 85%, 40%);
 }
+
+/* Custom styles for React Slick arrow buttons */
+/* .slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 70px;
+  height: 70px;
+  background-color: hsl(0, 79%, 5%);
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+} */
+
+.slick-prev::before,
+.slick-next::before {
+  /* content: ''; */
+  color: #94bd0f !important;
+  font-size: 50px !important;
+}
+
+/* .slick-prev {
+  font-size: 25px !important;
+}
+
+.slick-next {
+  font-size: 25px !important;
+} */
+
+/* .slick-slide {
+  margin: 0 10px;
+} */
+
+.slick-list {
+  /* padding: 10px !important; */
+  margin: 0 60px !important;
+  background-color: white !important;
+}
+
+/* Adjust positioning and container styles */
+.slick-slider {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 1 !important;
+  width: 30px !important; /* Adjust the width as needed */
+  height: 30px !important; /* Adjust the height as needed */
+}
+
+.slick-prev {
+  left: 5px !important; /* Adjust the left position as needed */
+  color: green !important;
+}
+
+.slick-next {
+  right: 24px !important;
+  color: green !important;/* Adjust the right position as needed */
+}
+
+.card {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* margin: 5px; */
+}
+
+.slick-track {
+  display: flex !important;
+  gap: 10px;
+}
