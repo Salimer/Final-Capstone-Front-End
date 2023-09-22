@@ -1,23 +1,10 @@
 import React from 'react';
+import MotorList from '../MotorList';
 
 export default function Home() {
   return (
-    <>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-      <div>This is the home page</div>
-    </>
+    <div className="h-screen flex flex-col justify-center align-center">
+      <MotorList />
+    </div>
   );
 }
