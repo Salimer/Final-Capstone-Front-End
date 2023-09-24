@@ -1,5 +1,5 @@
 import React from 'react';
-import MotorList from '../MotorList';
+import MotorList from '../motor/MotorList';
 
 export default function Home() {
   return (

@@ -19,6 +19,7 @@ a.small.active {
 }
 
 /* Custom styles for React Slick arrow buttons */
+
 /* .slick-prev,
 .slick-next {
   position: absolute;
@@ -89,8 +90,7 @@ a.small.active {
   display: flex !important;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* margin: 5px; */
+  gap: 10px;
 }
 
 .slick-track {

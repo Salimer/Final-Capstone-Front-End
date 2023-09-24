@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-extraneous-dependencies */
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -7,6 +8,7 @@ import Reservations from './components/pages/Reservations';
 import Reserve from './components/pages/Reserve';
 import AddMotor from './components/pages/AddMotor';
 import DeleteMotor from './components/pages/DeleteMotor';
+import Details from './components/motor/Details';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/reserve/:id" element={<Reserve />} />
           <Route path="/add/:id" element={<AddMotor />} />
           <Route path="/delete/:id" element={<DeleteMotor />} />
+          <Route path="/details/:id" element={<Details />} />
 
         </Routes>
       </Layout>
