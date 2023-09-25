@@ -62,6 +62,12 @@ const API = {
       .catch((error) => success(error.message));
   },
 
+  recoverItemById: (id, success) => {
+    axios.patch(`${baseURL}/items/${id}`, { item: { removed: false } })
+      .then((response) => success(response))
+      .catch((error) => success(error.message));
+  },
+
   // Reservations Controller
   getReservations: (success) => {
     axios.get(`${baseURL}/reservations`)

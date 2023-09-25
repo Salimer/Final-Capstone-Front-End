@@ -6,6 +6,7 @@ export const DELETE_MOTORCYCLE = 'BOOK-APPOINTMENT/MOTORCYCLES/DELETE_MOTORCYCLE
 export const FETCH_MOTORCYCLE_BY_ID = 'BOOK-APPOINTMENT/MOTORCYCLES/FETCH_MOTORCYCLE_BY_ID';
 export const UPDATE_MOTORCYCLE = 'BOOK-APPOINTMENT/MOTORCYCLES/UPDATE_MOTORCYCLE';
 export const MARK_MOTORCYCLE_AS_REMOVED = 'BOOK-APPOINTMENT/MOTORCYCLES/MARK_MOTORCYCLE_AS_REMOVED';
+export const RECOVER_MOTORCYCLE = 'BOOK-APPOINTMENT/MOTORCYCLES/RECOVER_MOTORCYCLE';
 
 export const fetchMotorcycles = () => (dispatch) => {
   API.getItems((response) => {
@@ -63,6 +64,16 @@ export const markMotorcycleAsRemoved = (id) => (dispatch) => {
   });
 };
 
+export const recoverMotorcycle = (id) => (dispatch) => {
+  API.recoverItemById(id, (response) => {
+    dispatch({
+      type: RECOVER_MOTORCYCLE,
+      payload: id,
+      message: response.data,
+    });
+  });
+};
+
 const initialState = {
   motorcycles: [],
   selectedMotorcycle: null,
@@ -98,6 +109,15 @@ const motorcyclesReducer = (state = initialState, action) => {
             ? action.payload
             : motorcycle
         )),
+      };
+
+    case RECOVER_MOTORCYCLE:
+      return {
+        ...state,
+        motorcycles: state.motorcycles.map((motorcycle) => (
+          motorcycle.id === action.payload
+            ? { ...motorcycle, removed: false }
+            : motorcycle)),
       };
 
     case MARK_MOTORCYCLE_AS_REMOVED:
