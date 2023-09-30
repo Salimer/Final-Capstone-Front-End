@@ -1,4 +1,5 @@
 import API from '../api';
+import { reset } from './authSlice';
 
 export const loadCurrentUser = (state) => state.auth.currentUser;
 
@@ -17,9 +18,7 @@ export const login = (payload) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  await dispatch({
-    type: RESET,
-  });
+  await dispatch(reset()); // Use the reset action from authSlice to reset the auth state
 };
 
 export const signup = (payload) => async (dispatch) => {
