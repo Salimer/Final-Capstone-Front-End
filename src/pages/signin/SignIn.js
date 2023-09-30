@@ -1,24 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { login } from '../../redux/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../redux/users/users';
 
-
 const SignInPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState('');
-
-
-  // Get the isLoading state from the Redux store
-  const isLoading = useSelector((state) => state.auth.isLoading);
-
-  const handleChange = (e) => {
-    setUsername(e.target.value);
 
   const handleChange = (event) => {
     setUser(event.target.value);
@@ -26,20 +15,6 @@ const SignInPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const user = {
-        name: username,
-      };
-
-      // Dispatch the login action
-      await dispatch(login(user));
-
-      // Redirect to the home page upon successful login
-      navigate('/home');
-    } catch (error) {
-      setError('Login failed. Please try again.'); // Set an error message to display to the user
-
     if (!user) {
       toast.error('The name field is required.');
       return;
@@ -51,25 +26,6 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="container mt-5 ml-1 col-sm-4 mx-auto">
-      <form onSubmit={handleSubmit} className="form">
-        <h3 className="text-center">LogIn</h3>
-        <div className="mb-3">
-          <input
-            className="form-control"
-            type="text"
-            name="username"
-            placeholder="User name"
-            onChange={handleChange}
-            value={username}
-          />
-        </div>
-        {error && <div className="text-danger">{error}</div>}
-        {/* Display the error message */}
-        <button className="btn btn-success" type="submit" disabled={isLoading}>
-          {isLoading ? 'Logging In...' : 'Log In'}
-        </button>
-      </form>
     <div className="w-full  h-screen flex justify-center items-center">
       <div className="w-80 bg-bodyBg rounded-xl pt-14 pb-14 px-6">
         <form onSubmit={handleSubmit} className="form">
