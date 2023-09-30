@@ -15,13 +15,14 @@ const SignInPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user) {
+    if (!user || user.trim() === '') {
       toast.error('The name field is required.');
       return;
     }
     dispatch(createUser(user));
     navigate('/motors');
     toast.success('You are successfully logged in');
+    localStorage.setItem('user', user);
     setUser('');
   };
 
