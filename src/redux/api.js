@@ -111,6 +111,28 @@ const API = {
       .then((response) => success(response))
       .catch((error) => success(error.message));
   },
+
+  // Login
+  login: (user, success) => {
+    axios.post(`${baseURL}/auth/login`, user)
+      .then((response) => success(response))
+      .catch((error) => success(error.response ? error.response.data : error.message));
+  },
+
+  // Signup
+  signup: (user, success) => {
+    axios.post(`${baseURL}/auth/signup`, user)
+      .then((response) => success(response))
+      .catch((error) => {
+        if (error.response) {
+          // If there is a response from the server, return the error response data
+          success(error.response.data);
+        } else {
+          // If there is no response, return the error message
+          success(error.message);
+        }
+      });
+  },
 };
 
 export default API;
