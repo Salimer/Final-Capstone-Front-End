@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth';
 
 const SignInPage = () => {
@@ -8,6 +8,9 @@ const SignInPage = () => {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Get the isLoading state from the Redux store
+  const isLoading = useSelector((state) => state.auth.isLoading);
 
   const handleChange = (e) => {
     setUsername(e.target.value);
@@ -21,7 +24,10 @@ const SignInPage = () => {
         name: username,
       };
 
+      // Dispatch the login action
       await dispatch(login(user));
+
+      // Redirect to the home page upon successful login
       navigate('/home');
     } catch (error) {
       setError('Login failed. Please try again.'); // Set an error message to display to the user
@@ -43,10 +49,9 @@ const SignInPage = () => {
           />
         </div>
         {error && <div className="text-danger">{error}</div>}
-        {' '}
         {/* Display the error message */}
-        <button className="btn btn-success" type="submit">
-          LogIn
+        <button className="btn btn-success" type="submit" disabled={isLoading}>
+          {isLoading ? 'Logging In...' : 'Log In'}
         </button>
       </form>
     </div>
