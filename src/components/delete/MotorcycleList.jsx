@@ -13,7 +13,7 @@ const MotorcycleList = () => {
 
   return (
     <ul className="divide-customBorder">
-      {motorcycles.length > 0 ? (
+      {motorcycles > 0 ? (
         motorcycles.map((motorcycle) => (
           <MotorcycleItem key={motorcycle.id} motorcycle={motorcycle} />
         ))

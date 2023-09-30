@@ -13,7 +13,7 @@ export default function List() {
 
   useEffect(() => {
     dispatch(fetchReservations(1));
-    if (allItems.length === 0) dispatch(fetchMotorcycles());
+    dispatch(fetchMotorcycles());
   }, [dispatch, allItems]);
 
   // Define the number of reservations per page

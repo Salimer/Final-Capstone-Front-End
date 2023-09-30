@@ -66,7 +66,7 @@ export const confirmReservation = (id) => (dispatch) => {
 };
 
 const initialState = {
-  reservations: [],
+  reservations: [], // Initialize as an empty array
   selectedReservation: null,
 };
 
@@ -80,7 +80,7 @@ const reservationsReducer = (state = initialState, action) => {
     case CREATE_RESERVATION:
       return {
         ...state,
-        reservations: [...state.reservations, action.payload],
+        reservations: action.payload,
       };
     case DELETE_RESERVATION:
       return {
