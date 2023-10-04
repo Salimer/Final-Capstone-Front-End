@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Reservation from './reservation';
 import Pagination from './pagination'; // Import the Pagination component
 
-export default function List({ allReservations, bikes }) {
+const List = ({ allReservations, bikes }) => {
   // Define the number of reservations per page
   const reservationsPerPage = 5;
 
@@ -30,15 +30,17 @@ export default function List({ allReservations, bikes }) {
 
   return (
     <div className="flex flex-col justify-between">
-      <table className="border-collapse border border-gray-300 mx-auto mt-12 bg-white drop-shadow-md w-11/12">
+      <table className=" border border-gray-300 mx-auto mt-12 bg-white drop-shadow-md w-11/12 border-separate rounded-lg">
         <thead>
           <tr className="text-center">
             <th className="border border-gray-300 px-4 py-4 bg-customBg text-white hidden lg:table-cell">Thumbnail</th>
-            <th className="border border-gray-300 px-4 py-4 bg-customBg text-white">Bike</th>
+            <th className="border border-gray-300 px-4 py-4 bg-customBg text-white">Motor</th>
             <th className="border border-gray-300 px-4 py-4 bg-customBg text-white">Date</th>
             <th className="border border-gray-300 px-4 py-4 bg-customBg text-white md:table-cell">City</th>
             <th className="border border-gray-300 px-4 py-4 bg-customBg text-white hidden md:table-cell">
-              Stat
+              Motor
+              <br />
+              Availability
             </th>
           </tr>
         </thead>
@@ -57,27 +59,23 @@ export default function List({ allReservations, bikes }) {
       />
     </div>
   );
-}
+};
+export default List;
 
 List.propTypes = {
-  allReservations: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    username_id: PropTypes.string.isRequired,
-    item_id: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    removed: PropTypes.bool.isRequired,
-    length: PropTypes.number.isRequired,
-    slice: PropTypes.func.isRequired,
-  }).isRequired,
-  bikes: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    image_url: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-  }).isRequired,
+  allReservations: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      item_id: PropTypes.number.isRequired,
+      city: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+  bikes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      image_url: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };

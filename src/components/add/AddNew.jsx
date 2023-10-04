@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import { createBike } from '../../redux/bikes/thunk';
 import MotorcycleForm from './MotorcycleForm';
 
-export default function AddNew() {
+const AddNew = () => {
+  const imageInputRef = useRef(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [newMotor, setNewMotor] = useState({
     name: '',
     description: '',
@@ -55,7 +54,9 @@ export default function AddNew() {
       total_amount_payable: 0,
       duration: 0,
     });
-    navigate('/motors');
+    if (imageInputRef.current) {
+      imageInputRef.current.value = '';
+    }
   };
 
   return (
@@ -66,8 +67,10 @@ export default function AddNew() {
           newMotor={newMotor}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          imageInputRef={imageInputRef}
         />
       </div>
     </div>
   );
-}
+};
+export default AddNew;

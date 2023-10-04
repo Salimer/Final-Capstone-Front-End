@@ -6,7 +6,7 @@ import { fetchBikes } from '../redux/bikes/thunk';
 import LoadingScreen from '../components/conditions/LoadingScreen';
 import NoRecords from '../components/conditions/NoRecords';
 
-export default function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const bikes = useSelector(bikesSelector);
 
@@ -32,11 +32,12 @@ export default function Home() {
   const bikesWithoutRemoved = bikes.bikes.filter((bike) => bike.removed === false);
 
   if (bikesWithoutRemoved.length === 0) {
-    return <NoRecords />;
+    return <NoRecords message="No bikes available" />;
   }
   return (
     <div className="h-screen flex flex-col justify-center align-center">
       <MotorList motorcycles={bikes.bikes} />
     </div>
   );
-}
+};
+export default Home;

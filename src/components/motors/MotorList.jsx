@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import MotorItem from './MotorItem';
 
-export default function MotorList({ motorcycles }) {
+const MotorList = ({ motorcycles }) => {
   const bikes = motorcycles;
   const settings = {
     dots: true,
@@ -18,7 +18,7 @@ export default function MotorList({ motorcycles }) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 3,
           infinite: true,
           dots: true,
@@ -68,16 +68,15 @@ export default function MotorList({ motorcycles }) {
       </Slider>
     </div>
   );
-}
+};
+export default MotorList;
 
 MotorList.propTypes = {
-  motorcycles: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    image_url: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-  }).isRequired,
+  motorcycles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      image_url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };

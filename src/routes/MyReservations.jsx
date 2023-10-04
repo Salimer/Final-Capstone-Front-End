@@ -8,7 +8,7 @@ import LoadingScreen from '../components/conditions/LoadingScreen';
 import NoRecords from '../components/conditions/NoRecords';
 import List from '../components/myReservations/list';
 
-export default function MyReservations() {
+const MyReservations = () => {
   const dispatch = useDispatch();
   const reservations = useSelector(reservationsSelector);
   const bikes = useSelector(bikesSelector);
@@ -46,7 +46,7 @@ export default function MyReservations() {
 
   if (reservations.reservations.length < 1) {
     return (
-      <NoRecords />
+      <NoRecords message="No reservations" />
     );
   }
 
@@ -55,4 +55,5 @@ export default function MyReservations() {
       <List allReservations={reservations.reservations} bikes={bikes.bikes} />
     </div>
   );
-}
+};
+export default MyReservations;
